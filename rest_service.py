@@ -12,7 +12,8 @@ def transform():
     js = request.get_json()
     for i in js["word"]:
         if 'ё' in i:
-            words.append(i)
+            if (yo.getWalid(i)):
+                words.append(i)
             continue
         ind = 0
         for letter in i:
