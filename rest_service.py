@@ -2,7 +2,6 @@ from flask import Flask, jsonify, request
 from scrapper import *
 
 yo = Yo()
-waw = yo.getWalid('ёжиков')
 
 app = Flask(__name__)
 
@@ -10,9 +9,9 @@ app = Flask(__name__)
 def transform():
     words = []
     js = request.get_json()
-    for i in js["word"]:
+    for i in js["words"]:
         if 'ё' in i:
-            if (yo.getWalid(i)):
+            if (yo.getValid(i)):
                 words.append(i)
             continue
         ind = 0
@@ -21,7 +20,7 @@ def transform():
                 newStr = list(i)
                 newStr[ind] = "ё"
                 newStr = "".join(newStr)
-                if (yo.getWalid(newStr)):
+                if (yo.getValid(newStr)):
                     words.append(newStr)
             ind += 1
 
@@ -33,10 +32,10 @@ def getAll():
     return jsonify(yo.getWords())
 
 @app.route("/is_valid_yo", methods=['POST', 'GET'])
-def checkWalid():
+def checkValid():
     searchword = request.args.get('word', '')
     if request.method == 'GET':
-        return "true" if yo.getWalid(searchword) else "false"
+        return "true" if yo.getValid(searchword) else "false"
     else:
         return searchword
 

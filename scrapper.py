@@ -21,8 +21,6 @@ class Yo():
             w.close()
 
             r = open('tryYO1.txt', 'r', encoding = 'utf-8')
-            #fileWords = open('tryYO2.txt', 'w', encoding = 'utf-8')
-        
             i = 0
             for word in r:
                 i += 1
@@ -31,10 +29,7 @@ class Yo():
                     for w1 in m:
                         if w1.find('ё') != -1:
                             self._words.append(w1.strip().lower())
-                            #fileWords.write(w1 + '\n')
             r.close()
-            #fileWords.close()
-            
             self._words = list(set(self._words))
             self._words.sort()
 
@@ -49,5 +44,5 @@ class Yo():
     def getWords(self):
         return self._words
 
-    def getWalid(self, word):
+    def getValid(self, word):
         return word in self._words
