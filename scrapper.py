@@ -21,7 +21,7 @@ for word in r:
     if i > 45 and re.fullmatch(r'[а-я]', word[0]):
         m = re.split(r'\[|,|\(|\)|\n|;| |-', word)
         for w1 in m:
-            if w1.find('ё') != -1 and w1 != '-ён':
+            if w1.find('ё') != -1 and w1 != 'ён':
                 words.append(w1 + '\n')
                 fileWords.write(w1 + '\n')
 r.close()
